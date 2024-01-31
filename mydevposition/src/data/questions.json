@@ -1,0 +1,26 @@
+[
+  {
+    "number": "Q1",
+    "question": "2024년 청룡의 해가 밝았다! 나는 지금",
+    "option1": "1학년",
+    "option2": "2학년",
+    "option3": "3학년",
+    "option4": "4학년 이상"
+  },
+  {
+    "number": "Q2",
+    "question": "친구들과 만나기 전, 무슨 옷을 입을까?",
+    "option1": "꾸꾸꾸룩",
+    "option2": "꾸안꾸룩",
+    "option3": "세상 편한 추리닝 세트",
+    "option4": "새앵각이안나"
+  },
+  {
+    "number": "Q3",
+    "question": "동해물과백두산이 마르고닳도록",
+    "option1": "서울",
+    "option2": "가나다",
+    "option3": "3학년",
+    "option4": "오이김밥"
+  }
+]
