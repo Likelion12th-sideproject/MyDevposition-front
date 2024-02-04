@@ -131,6 +131,80 @@ const answerText = css`
   font-weight: bolder;
 `;
 
+const resultDiv = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 90%;
+  height: 95%;
+  background-color: white;
+  border-radius: 30px;
+  font-size: 0.6rem;
+  border: 1px;
+`;
+
+const resultQ = css`
+  margin-top: 30px;
+  margin-bottom: 0px;
+`;
+
+const resultTitle = css`
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #f7941e;
+  margin-top: 0px;
+  margin-bottom: 5px;
+`;
+
+const resultContent = css`
+  display: float;
+  width: 85%;
+  height: auto;
+  background-color: #ffe0bc;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  text-align: row;
+`;
+const resultText = css`
+  margin: 15px;
+`;
+
+const resultContentDiv = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 80%;
+  height: 20%;
+  font-size: 0.6rem;
+  border: 1px;
+`;
+
+const resultbtn = css`
+  display: flex;
+  width: 85%;
+  height: 30px;
+  background-color: #f7941e;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  text-align: row;
+  align-items: center;
+`;
+
+const resultbtna = css`
+  text-decoration: none;
+  color: white;
+`;
+
 interface Answer {
   type: string;
   text: string;
@@ -413,10 +487,43 @@ function App() {
           </div>
         </div>
       ) : (
-        <div>
-          결과
+        <div css={[resultDiv]}>
+          <h1 css={[resultQ]}>당신에게 딱 맞는 포지션은</h1>
+          <p css={[resultTitle]}>&lt;프론트엔드&gt;</p>
+          <div css={[resultContent]}>
+            <div css={[resultText]}>
+              가끔 UI/UX 디자인을 배우고 싶을 때도 있지.
+              <br />
+              배울 게 너무 많아서 고민이라고~?
+              <br />
+              오히려 좋아~~
+              <br />
+              디자이너와 협업하기 위해서는
+              <br />
+              프론트엔드 개발자도 어느 정도
+              <br />
+              디자인 툴에 익숙해야 한다고.
+              <br />
+              프론트 개발과 디자인을 함께 공부하면서
+              <br />
+              어느 쪽이 나에게 더 맞는지 직접 알아보자!
+              <br />
+              어디서? ‘멋쟁이사자처럼’에서~~~~~~
+            </div>
+          </div>
+          <div css={[resultContentDiv]}>
+            <h1>지금 바로 멋사 지원하기</h1>
+            <h1>🠗🠗🠗🠗🠗🠗🠗🠗🠗🠗</h1>
+            <div css={[resultbtn]}>
+              <a css={[resultbtna]} href="#" title="2024 아기사자 지원폼">
+                Google From
+              </a>
+            </div>
+          </div>
           <div>
-            <button onClick={() => setPage(0)}>처음으로 돌아가기</button>
+            <button css={startButton} onClick={() => setPage(0)}>
+              처음으로
+            </button>
           </div>
         </div>
       )}
