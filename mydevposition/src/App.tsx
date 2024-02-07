@@ -4,13 +4,6 @@ import React from "react";
 import { useState } from "react";
 import { css } from "@emotion/react";
 
-// import MainPage from './Pages/MainPage';
-
-const prograss = css`
-  font-size: 1.5rem;
-  font-weight: 500;
-`;
-
 const Wrapper = css`
   display: flex;
   justify-content: center;
@@ -32,13 +25,30 @@ const mainDiv = css`
   background-color: white;
   border-radius: 30px;
 `;
+const container = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+`;
+const innerDiv = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 60%;
+  height: 85%;
+  background-color: white;
+`;
 
 const centeredText = css`
   text-align: center;
 `;
 
 const leftAlignedText = css`
-  text-align: left;
+  margin-left: 0px;
 `;
 
 const logo = css`
@@ -46,7 +56,11 @@ const logo = css`
   height: 10rem;
   margin-top: 1rem;
 `;
-
+const timetable = css`
+  width: 15rem;
+  height: 15rem;
+  margin-bottom: 0.5rem;
+`;
 const startButton = css`
   color: white;
   background-color: black;
@@ -60,34 +74,37 @@ const startButton = css`
   font-weight: 600;
 `;
 
-const switchButtonWrapper = css`
-  display: flex;
-`;
-
-const switchButton = css`
-  color: white;
-  background-color: black;
-  margin-top: 3rem;
-  width: 2.7rem;
-  height: 2.7rem;
+const backButton = css`
+  color: black;
+  background-color: white;
+  border: solid 1.5px;
+  border-radius: 5rem;
+  margin-top: 1.2rem;
+  width: 4.3rem;
+  height: 2.3rem;
   text-align: center;
-  border: 0;
   border-radius: 10rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-right: 6rem;
-  margin-left: 6rem;
+  margin-right: -13rem;
 `;
 
-const QnStyle = css`
+const number = css`
+  display: flex;
   font-size: 3rem;
-  font-weight: bolder;
+  font-weight: bold;
   color: #f7941e;
+  margin-top: 0.7rem;
+`;
+
+const question = css`
+  display: flex;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-top: 0.7rem;
 `;
 
 const questionText = css`
-  font-size: 1.6rem;
-  font-weight: 600;
   margin-bottom: 2rem;
 `;
 
@@ -98,7 +115,7 @@ const answerBtn_Orange = css`
   border-radius: 5rem;
   border-color: #f7941e;
   width: 18rem;
-  height: 4rem;
+  height: 3.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 `;
@@ -110,25 +127,41 @@ const answerBtn_Black = css`
   background-color: #f3f3f3;
   border-color: black;
   width: 18rem;
-  height: 4rem;
+  height: 3.5rem;
 `;
 
 const answerWrapper = css`
-  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-`;
-
-const answerText_Describe = css`
-  margin-top: 0.3rem;
-  margin-bottom: 0.1rem;
-  font-weight: bold;
+  height: 100%;
+  margin-top: 1rem;
 `;
 
 const answerText = css`
-  margin: 0;
-  margin-bottom: 0.7rem;
-  font-size: 1.5rem;
+  margin: auto;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
   font-weight: bolder;
+  padding: 0.2rem;
+`;
+
+const progressBar = css`
+  width: 15rem;
+  height: 18px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #000000;
+  margin: auto;
+`;
+
+const progressFill = css`
+  height: 100%;
+  background-color: black;
+  border-radius: 10px;
 `;
 
 const resultDiv = css`
@@ -206,7 +239,6 @@ const resultbtna = css`
 `;
 
 interface Answer {
-  type: string;
   text: string;
 }
 
@@ -215,119 +247,153 @@ interface Question {
   a: Answer[];
 }
 
-//d1, d2, dfront처럼 d가 붙으면 describe라는 뜻
 function App() {
   const [page, setPage] = useState<number>(0);
+  const [progress, setProgress] = useState(0);
+  const [front, setFront] = useState(0);
+  const [back, setBack] = useState(0);
+  const [plan, setPlan] = useState(0);
+  const [design, setDesign] = useState(0);
 
-  const questionList: Question[] = [
+  const questionList = [
     {
       q: ["2024년 청룡의 해!", "나는 지금"],
       a: [
-        { type: "d1", text: "저를 새내기라고 불러주세요" },
-        { type: "front", text: "1학년" },
-        { type: "d2", text: "나도 마음만은 새내기" },
-        { type: "back", text: "2학년" },
-        { type: "d3", text: "내가 벌써?" },
-        { type: "full", text: "3학년" },
-        { type: "d4", text: "저 화석 아닌데요" },
-        { type: "design", text: "4학년" },
+        { text: "1학년", value: "" },
+        { text: "2학년", value: "" },
+        { text: "3학년", value: "" },
+        { text: "4학년", value: "" },
       ],
     },
     {
-      q: ["두번째", "페이지입니다"],
+      q: ["조별 과제에서", "내가 원하는 역할은?"],
       a: [
-        { type: "d1", text: "두번째" },
-        { type: "front", text: "페이지임" },
-        { type: "d2", text: "2" },
-        { type: "back", text: "2학년" },
-        { type: "d3", text: "3?" },
-        { type: "full", text: "3학년" },
-        { type: "d4", text: "4" },
-        { type: "design", text: "4학년" },
+        { text: "자료조사 및 정리", value: "back" },
+        { text: "ppt 제작", value: "front and design" },
+        { text: "발표", value: "plan and front" },
+        { text: "무임승차", value: "" },
       ],
     },
     {
-      q: ["세 번째", "페이지입니다"],
+      q: ["책을 사 볼까?", "주로 나는"],
       a: [
-        { type: "d1", text: "저를 새내기라고 불러주세요" },
-        { type: "front", text: "1학년" },
-        { type: "d2", text: "나도 마음만은 새내기" },
-        { type: "back", text: "2학년" },
-        { type: "d3", text: "내가 벌써?" },
-        { type: "full", text: "3학년" },
-        { type: "d4", text: "저 화석 아닌데요" },
-        { type: "design", text: "4학년" },
+        {
+          text: "표지가 예쁜 책에 눈이 가",
+          value: "front and design",
+        },
+        { text: "관심 분야인 책부터!", value: "plan" },
+        { text: "나에게 익숙한 책이 좋아", value: "back" },
+        { text: "좋아하는 작가의 책을 찾아봐", value: "plan" },
       ],
     },
     {
-      q: ["네 번째", "페이지입니다"],
+      q: ["식당을 고를 때", "가장 중요한 것은?"],
       a: [
-        { type: "d1", text: "저를 새내기라고 불러주세요" },
-        { type: "front", text: "1학년" },
-        { type: "d2", text: "나도 마음만은 새내기" },
-        { type: "back", text: "2학년" },
-        { type: "d3", text: "내가 벌써?" },
-        { type: "full", text: "3학년" },
-        { type: "d4", text: "저 화석 아닌데요" },
-        { type: "design", text: "4학년" },
+        { text: "인테리어", value: "plan and design" },
+        { text: "대기 여부", value: "front" },
+        { text: "맛", value: "back" },
+        { text: "유명세", value: "plan and front" },
       ],
     },
     {
-      q: ["다섯번째", "페이지입니다"],
+      q: ["SNS에 글을 올릴 때", "나는"],
       a: [
-        { type: "d1", text: "저를 새내기라고 불러주세요" },
-        { type: "front", text: "1학년" },
-        { type: "d2", text: "나도 마음만은 새내기" },
-        { type: "back", text: "2학년" },
-        { type: "d3", text: "내가 벌써?" },
-        { type: "full", text: "3학년" },
-        { type: "d4", text: "저 화석 아닌데요" },
-        { type: "design", text: "4학년" },
+        { text: "접속수가 많은 시간에 올려", value: "back" },
+        { text: "피드 꾸미기가 가장 중요해", value: "design" },
+        { text: "육하원칙, 무조건.", value: "plan" },
+        {
+          text: "메인 사진 추천받기!",
+          value: "front",
+        },
       ],
     },
     {
-      q: ["여섯번째", "페이지입니다"],
+      q: ["시간표가 이상하다!", "가장 먼저 보이는 것은?"],
       a: [
-        { type: "d1", text: "저를 새내기라고 불러주세요" },
-        { type: "front", text: "1학년" },
-        { type: "d2", text: "나도 마음만은 새내기" },
-        { type: "back", text: "2학년" },
-        { type: "d3", text: "내가 벌써?" },
-        { type: "full", text: "3학년" },
-        { type: "d4", text: "저 화석 아닌데요" },
-        { type: "design", text: "4학년" },
+        { text: "요일이 이상한데?", value: "back" },
+        { text: "색 조합 누가 짰어!", value: "design" },
+        { text: "OMG. 뭐든 당장 수정해!", value: "plan" },
+        { text: "폰트 통일감 제로..", value: "front" },
       ],
     },
-
-    { q: ["결과 보기"], a: [{ type: "", text: "결과" }] },
   ];
 
-  const [positionList, setPositionList] = useState([
-    { name: "front", count: 0 },
-    { name: "back", count: 0 },
-    { name: "full", count: 0 },
-    { name: "design", count: 0 },
-  ]);
+  const handleAnswer = (answer: { text?: string; value: any }, idx: number) => {
+    /* if (idx === 0) {
+      const data = {
+        answerText: answer.text,
+      };
 
-  const handleAnswer = (type: any, idx: any) => {
-    let ls = positionList;
-    for (let i = 0; i < ls.length; i++) {
-      if (ls[i].name === type) {
-        ls[i].count = ls[i].count + 1;
-      }
-    }
-    setPositionList(ls);
-    setPage(page + 1);
+      fetch("http://{{host}}/users/{{userId}}/grade", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          console.log("Data saved:", data);
+          return response.json(); 
+        })
+        .then((responseData) => {
+          console.log("Response data:", responseData);
+        })
+        .catch((error) => {
+          console.error("There was an error saving the data:", error);
+        });
+    } */
 
-    if (idx + 1 === questionList.length) {
-      console.log("결과보기");
+    const value = answer.value;
+
+    switch (value) {
+      case "front":
+        setFront((prevState) => prevState + 1);
+        break;
+      case "back":
+        setBack((prevState) => prevState + 1);
+        break;
+      case "plan":
+        setPlan((prevState) => prevState + 1);
+        break;
+      case "design":
+        setDesign((prevState) => prevState + 1);
+        break;
+      case "front and design":
+        setFront((prevState) => prevState + 1);
+        setDesign((prevState) => prevState + 1);
+        break;
+      case "plan and front":
+        setPlan((prevState) => prevState + 1);
+        setFront((prevState) => prevState + 1);
+        break;
+      case "plan and design":
+        setPlan((prevState) => prevState + 1);
+        setDesign((prevState) => prevState + 1);
+        break;
+      default:
+        break;
     }
+    setProgress(Math.round(((idx + 1) / questionList.length) * 100));
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handleStartClick = () => {
+    setPage(0);
+    setProgress(0);
+    setFront(0);
+    setBack(0);
+    setPlan(0);
+    setDesign(0);
   };
 
   return (
     <div css={Wrapper}>
-      {page === 0 ? ( //page 값이 0일때는 시작화면이 보이도록.
-        //시작 페이지 클릭 시 setPage가 1이 되면서 질문 페이지로 넘어감.
+      {page === 0 ? (
+        /* //page 값이 0일때는 시작화면이 보이도록.
+        //시작 페이지 클릭 시 setPage가 1이 되면서 질문 페이지로 넘어감. */
         <div css={[mainDiv, centeredText]} onClick={() => setPage(1)}>
           <h1>
             나에게 맞는
@@ -338,158 +404,74 @@ function App() {
           <img css={logo} src="Images/lionLogo.png" alt="logo" />
           <button css={startButton}>시작하기</button>
         </div> //시작페이지
-      ) : page < questionList.length ? ( //페이지가 질문 리스트보다 작으면 질문페이지가 나오도록
-        //질문 페이지
-        <div css={[mainDiv, leftAlignedText]}>
-          <div css={prograss}>{`${page} / ${questionList.length - 1}`}</div>
-          {questionList.map((val, idx) => (
-            <div
-              style={{ display: page === idx + 1 ? `flex` : "none" }}
-              key={idx}
-            >
-              {/* 질문 하나만 나오도록 하는 코드 */}
-              <div>
-                <div css={QnStyle}>{`Q${page}.`}</div>
-
-                {/* 질문 */}
-                <div css={questionText}>
-                  {val.q.map(
-                    (
-                      qval,
-                      qidx //질문 엔터용도
-                    ) => (
-                      //질문 인덱스값
-                      <div key={qidx}>{qval}</div>
-                    )
-                  )}
-                </div>
-
-                {/* 답변들 감싸는 div */}
-                <div css={answerWrapper}>
-                  {/* 첫번째 답변 */}
+      ) : page < questionList.length + 1 ? (
+        <div css={[mainDiv]}>
+          <div>
+            <div css={container}>
+              <div css={progress}>
+                <div css={progressBar}>
                   <div
-                    css={answerBtn_Orange}
-                    onClick={() => handleAnswer(val.a[0].type, idx)}
-                  >
-                    <div css={answerText_Describe}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "d1" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                    <div css={answerText}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "front" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                  </div>
-
-                  {/* 두 번째 답변 */}
-                  <div
-                    css={answerBtn_Black}
-                    onClick={() => handleAnswer(val.a[0].type, idx)}
-                  >
-                    <div css={answerText_Describe}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "d2" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                    <div css={answerText}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "back" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                  </div>
-
-                  {/* 세 번째 답변 */}
-                  <div
-                    css={answerBtn_Orange}
-                    onClick={() => handleAnswer(val.a[0].type, idx)}
-                  >
-                    <div css={answerText_Describe}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "d3" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                    <div css={answerText}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "full" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                  </div>
-
-                  {/* 네 번째 답변 */}
-                  <div
-                    css={answerBtn_Black}
-                    onClick={() => handleAnswer(val.a[0].type, idx)}
-                  >
-                    <div css={answerText_Describe}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "d4" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                    <div css={answerText}>
-                      {val.a.map(
-                        (aval, aidx) =>
-                          aval.type === "design" && (
-                            <div key={aidx}>{aval.text}</div>
-                          )
-                      )}
-                    </div>
-                  </div>
+                    css={progressFill}
+                    style={{ width: `${(page / questionList.length) * 100}%` }}
+                  ></div>
                 </div>
               </div>
             </div>
-          ))}
-          {/* 돌아가거나 다음으로 넘어가는 버튼 감싸는 div */}
-          <div css={switchButtonWrapper}>
-            {/* 이전 페이지로 가는 버튼 */}
-            {page > 0 && page < questionList.length - 1 && (
-              <button css={switchButton} onClick={() => setPage(page - 1)}>
-                ◀
-              </button>
-            )}
 
-            {/* 결과 보기 또는 다음 페이지로 가는 버튼 */}
-            {page === questionList.length - 1 ? (
-              // 여섯 번째 페이지인 경우
-              <button css={startButton} onClick={() => handleAnswer("", page)}>
-                결과 보기
-              </button>
-            ) : (
-              // 다음 페이지로 가는 버튼
-              page < questionList.length - 1 && (
-                <button css={switchButton} onClick={() => setPage(page + 1)}>
-                  ▶
-                </button>
-              )
-            )}
+            {questionList.map((val, idx) => (
+              <div
+                style={{ display: page === idx + 1 ? `flex` : "none" }}
+                key={idx}
+              >
+                <div css={container}>
+                  <div>
+                    <div css={number}>Q{idx + 1}</div>
+                    <div css={question}>{val.q[0]}</div>
+                    <div css={question}>{val.q[1]}</div>
+                  </div>
+
+                  <div css={answerWrapper}>
+                    {" "}
+                    {idx === questionList.length - 1 && (
+                      <img
+                        css={timetable}
+                        src="Images/시간표.png"
+                        alt="시간표"
+                      />
+                    )}
+                    {val.a.map((answer, aIdx) => (
+                      <button
+                        key={aIdx}
+                        css={
+                          aIdx % 2 === 0 ? answerBtn_Orange : answerBtn_Black
+                        }
+                        onClick={() => handleAnswer(answer, idx)}
+                      >
+                        <span css={answerText}>{answer.text}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <div>
+                    {page > 1 && (
+                      <button
+                        css={backButton}
+                        onClick={() => setPage(page - 1)}
+                      >
+                        BACK
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ) : (
         <div css={[resultDiv]}>
           <h1 css={[resultQ]}>당신에게 딱 맞는 포지션은</h1>
-          <p css={[resultTitle]}>&lt;프론트엔드&gt;</p>
+          <p css={[resultTitle]}>
+            프론트: {front} / 백엔드: {back} / 기획: {plan} / 디자인: {design}
+          </p>
           <div css={[resultContent]}>
             <div css={[resultText]}>
               가끔 UI/UX 디자인을 배우고 싶을 때도 있지.
@@ -516,12 +498,12 @@ function App() {
             <h1>🠗🠗🠗🠗🠗🠗🠗🠗🠗🠗</h1>
             <div css={[resultbtn]}>
               <a css={[resultbtna]} href="#" title="2024 아기사자 지원폼">
-                Google From
+                Google 폼
               </a>
             </div>
           </div>
           <div>
-            <button css={startButton} onClick={() => setPage(0)}>
+            <button css={startButton} onClick={() => handleStartClick()}>
               처음으로
             </button>
           </div>
