@@ -66,13 +66,12 @@ const backButton = css`
   border: solid 1.5px;
   border-radius: 5rem;
   margin-top: 1.2rem;
-  width: 4.3rem;
+  width: 4.7rem;
   height: 2.3rem;
   text-align: center;
   border-radius: 10rem;
   font-size: 1rem;
   font-weight: 700;
-  margin-right: -13rem;
 `;
 
 const number = css`
@@ -94,6 +93,7 @@ const answerBtn_Orange = css`
   text-align: center;
   background-color: #ffe4c3;
   border-style: solid;
+  border-width: 2px;
   border-radius: 5rem;
   border-color: #f7941e;
   width: 18rem;
@@ -105,6 +105,7 @@ const answerBtn_Orange = css`
 const answerBtn_Black = css`
   text-align: center;
   border-style: solid;
+  border-width: 2px;
   border-radius: 5rem;
   background-color: #f3f3f3;
   border-color: black;
@@ -236,6 +237,7 @@ function App() {
   const [back, setBack] = useState(0);
   const [plan, setPlan] = useState(0);
   const [design, setDesign] = useState(0);
+  const [showResultButton, setShowResultButton] = useState(false);
 
   const questionList = [
     {
@@ -244,7 +246,7 @@ function App() {
         { text: "1학년", value: "" },
         { text: "2학년", value: "" },
         { text: "3학년", value: "" },
-        { text: "4학년", value: "" },
+        { text: "4학년 이상", value: "" },
       ],
     },
     {
@@ -362,11 +364,12 @@ function App() {
         setPlan((prevState) => prevState + 1);
         setDesign((prevState) => prevState + 1);
         break;
-      default:
-        break;
     }
-    setProgress(Math.round(((idx + 1) / questionList.length) * 100));
-    setPage((prevPage) => prevPage + 1);
+    if (idx === questionList.length - 1) {
+      setShowResultButton(true);
+    } else {
+      setProgress(Math.round(((idx + 1) / questionList.length) * 100));
+    }
   };
 
   const handleStartClick = () => {
@@ -376,8 +379,11 @@ function App() {
     setBack(0);
     setPlan(0);
     setDesign(0);
+    setShowResultButton(false);
   };
-
+  const handleResultClick = () => {
+    setPage(page + 1); // Move to result page when result button is clicked
+  };
   return (
     <div css={Wrapper}>
       {page === 0 ? (
@@ -443,10 +449,27 @@ function App() {
                   <div>
                     {page > 1 && (
                       <button
-                        css={backButton}
+                        css={[backButton, { marginRight: "35px" }]}
                         onClick={() => setPage(page - 1)}
                       >
-                        BACK
+                        이전
+                      </button>
+                    )}
+
+                    {page < questionList.length && (
+                      <button
+                        css={[backButton, { marginLeft: "35px" }]}
+                        onClick={() => setPage(page + 1)}
+                      >
+                        다음
+                      </button>
+                    )}
+                    {page === questionList.length && (
+                      <button
+                        css={[backButton, { marginLeft: "35px" }]}
+                        onClick={handleResultClick}
+                      >
+                        결과 보기
                       </button>
                     )}
                   </div>
