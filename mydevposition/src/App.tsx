@@ -100,6 +100,11 @@ const answerBtn_Orange = css`
   height: 3.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  &:focus {
+    background-color: #ffc885;
+    border-width: 4px;
+  }
 `;
 
 const answerBtn_Black = css`
@@ -111,6 +116,11 @@ const answerBtn_Black = css`
   border-color: black;
   width: 18rem;
   height: 3.5rem;
+
+  &:focus {
+    background-color: #cfcfcf;
+    border-width: 4px;
+  }
 `;
 
 const answerWrapper = css`
