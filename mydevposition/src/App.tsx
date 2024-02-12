@@ -32,23 +32,9 @@ const container = css`
   flex-direction: column;
   margin: auto;
 `;
-const innerDiv = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  width: 60%;
-  height: 85%;
-  background-color: white;
-`;
 
 const centeredText = css`
   text-align: center;
-`;
-
-const leftAlignedText = css`
-  margin-left: 0px;
 `;
 
 const logo = css`
@@ -102,10 +88,6 @@ const question = css`
   font-size: 1.7rem;
   font-weight: bold;
   margin-top: 0.7rem;
-`;
-
-const questionText = css`
-  margin-bottom: 2rem;
 `;
 
 const answerBtn_Orange = css`
@@ -319,32 +301,39 @@ function App() {
   ];
 
   const handleAnswer = (answer: { text?: string; value: any }, idx: number) => {
-    /* if (idx === 0) {
-      const data = {
-        answerText: answer.text,
+    if (idx === 0) {
+      const extractInteger = (text: string): string => {
+        const regex = /\d+/;
+        const match = text.match(regex);
+        return match ? match[0] : "";
       };
 
-      fetch("http://{{host}}/users/{{userId}}/grade", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+      const transformedText = extractInteger(answer.text || "");
+      const data = {
+        grade: transformedText,
+      };
+
+      fetch(
+        "https://838e598f-e98b-4557-8f47-05ab7487c670.mock.pstmn.io/grade",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
           console.log("Data saved:", data);
-          return response.json(); 
         })
-        .then((responseData) => {
-          console.log("Response data:", responseData);
-        })
+
         .catch((error) => {
           console.error("There was an error saving the data:", error);
         });
-    } */
+    }
 
     const value = answer.value;
 
