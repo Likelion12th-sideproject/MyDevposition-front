@@ -198,11 +198,37 @@ const spinnerStyle = css`
   }
 `;
 const spinnerText = css`
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bolder;
   padding: 0.2rem;
   color: white;
+  margin-top: 3rem;
 `;
+
+const balloon1 = css`
+  width: 12rem;
+  margin-left: -10rem;
+  margin-top: -2rem;
+`;
+
+const balloon2 = css`
+  width: 12rem;
+  margin-right: -10rem;
+  margin-top: 1rem;
+`;
+
+const balloon3 = css`
+  width: 16rem;
+  margin-left: -5rem;
+  margin-top: 5rem;
+`;
+
+const balloon4 = css`
+  width: 7rem;
+  margin-right: -15rem;
+  margin-top: 1rem;
+`;
+
 const resultDiv = css`
   display: flex;
   flex-direction: column;
@@ -372,16 +398,13 @@ function App() {
         grade: transformedText,
       };
 
-      fetch(
-        "https://838e598f-e98b-4557-8f47-05ab7487c670.mock.pstmn.io/grade",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      )
+      fetch("https://mydevposition-b0c4f67bee0a.herokuapp.com/grade", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -435,7 +458,7 @@ function App() {
       setLoading(false);
       setShowResultButton(true);
       setPage(page + 1);
-    }, 3000);
+    }, 10000);
   };
 
   const handleStartClick = () => {
@@ -452,8 +475,12 @@ function App() {
     <div css={Wrapper}>
       {loading ? (
         <>
-          <div css={spinnerText}>결과 불러오는 중</div>
-          <div css={spinnerStyle}></div>{" "}
+          <img css={balloon1} src="Images/1.png" />
+          <img css={balloon2} src="Images/2.png" />
+          <div css={spinnerText}>결과 불러오는 중...</div>
+          <div css={spinnerStyle}></div>
+          <img css={balloon3} src="Images/3.png" />
+          <img css={balloon4} src="Images/4.png" />
         </>
       ) : page === 0 ? (
         <div css={[mainDiv, centeredText]} onClick={() => setPage(1)}>
