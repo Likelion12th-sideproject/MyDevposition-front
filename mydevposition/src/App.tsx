@@ -237,6 +237,25 @@ const resultbtna = css`
   text-decoration: none;
   color: white;
 `;
+const reslutCircleDiv = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+const reslutCircleBtn = css`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100px;
+  margin-top: 1rem;
+  background-color: #ffb864;
+  border: none;
+  margin: 25px 25px 0px 25px;
+`;
+const reslutCircleText = css`
+  font-size: 0.7rem;
+  font-weight: bolder;
+`;
 
 interface Answer {
   text: string;
@@ -389,6 +408,43 @@ function App() {
     setDesign(0);
   };
 
+  const getResultPosition = () => {
+    const positions = [
+      { name: "프론트엔드", value: front },
+      { name: "백엔드", value: back },
+      { name: "기획", value: plan },
+      { name: "디자인", value: design },
+    ];
+
+    // 가장 큰 값을 찾음
+    const maxPosition = Math.max(
+      ...positions.map((position) => position.value)
+    );
+
+    // 가장 큰 값에 해당하는 포지션만 반환
+    const resultPosition = positions.find(
+      (position) => position.value === maxPosition
+    );
+
+    return resultPosition ? `${resultPosition.name}` : "";
+  };
+
+  const getResultContent = () => {
+    const resultPosition = getResultPosition();
+
+    if (resultPosition === "프론트엔드") {
+      return "데이터는 글쎄... 시각적인 것에 끌리는 당신에게 어울리는 포지션은 바로 프론트엔드 개발자! 가끔 UI/UX 디자인을 배우고 싶을 때도 있지. 배울 게 너무 많아서 고민이라고~? 오히려 좋아~~ 디자이너와 협업하기 위해서는 프론트엔드 개발자도 어느 정도 디자인 툴에 익숙해야 한다고. 프론트 개발과 디자인을 함께 공부하면서 어느 쪽이 나에게 더 맞는지 직접 알아보자! 어디서? ‘멋쟁이사자처럼’에서~~~~~~";
+    } else if (resultPosition === "백엔드") {
+      return "어디서 무엇을 하든 항상 묵묵하게 하자! 힘들어도 끈기 있게 맡은 일을 끝까지 해내는 당신이 진정한 외유내강. 데이터베이스, 서버 개발처럼 보이지 않는 곳에서 꾸준하게 노력하는 백엔드 포지션을 추천합니다.";
+    } else if (resultPosition === "기획") {
+      return "서비스를 기획하고 분위기에 맞는 디자인을 구상하는 당신은 ‘기획/디자인’ 파트가 어울려요! 기획 디자인파트는 실생활의 문제점, 불편사항에 대한 서비스 기획과 그에 맞는 디자인을 하는 디자이너입니다. 평소에 이런게 있었다면 좋았을텐데.. 라는 생각에 그치던 아이디어를 멋사에 지원해 꿈을 펼쳐보세요~!";
+    } else if (resultPosition === "디자인") {
+      return "당신은 베스트 디자이너 !";
+    }
+
+    return "";
+  };
+
   return (
     <div css={Wrapper}>
       {page === 0 ? (
@@ -469,43 +525,41 @@ function App() {
       ) : (
         <div css={[resultDiv]}>
           <h1 css={[resultQ]}>당신에게 딱 맞는 포지션은</h1>
-          <p css={[resultTitle]}>
-            프론트: {front} / 백엔드: {back} / 기획: {plan} / 디자인: {design}
-          </p>
+          <p css={[resultTitle]}>{getResultPosition()}</p>
           <div css={[resultContent]}>
-            <div css={[resultText]}>
-              가끔 UI/UX 디자인을 배우고 싶을 때도 있지.
-              <br />
-              배울 게 너무 많아서 고민이라고~?
-              <br />
-              오히려 좋아~~
-              <br />
-              디자이너와 협업하기 위해서는
-              <br />
-              프론트엔드 개발자도 어느 정도
-              <br />
-              디자인 툴에 익숙해야 한다고.
-              <br />
-              프론트 개발과 디자인을 함께 공부하면서
-              <br />
-              어느 쪽이 나에게 더 맞는지 직접 알아보자!
-              <br />
-              어디서? ‘멋쟁이사자처럼’에서~~~~~~
-            </div>
+            <div css={[resultText]}>{getResultContent()}</div>
           </div>
           <div css={[resultContentDiv]}>
             <h1>지금 바로 멋사 지원하기</h1>
             <h1>🠗🠗🠗🠗🠗🠗🠗🠗🠗🠗</h1>
             <div css={[resultbtn]}>
-              <a css={[resultbtna]} href="#" title="2024 아기사자 지원폼">
+              <a
+                css={[resultbtna]}
+                href="https://forms.gle/vruPB8KaZpMKgab56"
+                title="2024 아기사자 지원폼"
+              >
                 Google 폼
               </a>
             </div>
           </div>
-          <div>
-            <button css={startButton} onClick={() => handleStartClick()}>
-              처음으로
-            </button>
+          <div css={reslutCircleDiv}>
+            <div>
+              <button css={reslutCircleBtn}>
+                <a href="https://likelion.university/">
+                  <img src="Images/likelionpagelink.png" />
+                </a>
+              </button>
+              <p css={reslutCircleText}>멋사 홈페이지</p>
+            </div>
+            <div>
+              <button css={reslutCircleBtn}>
+                <img
+                  src="Images/restart.png"
+                  onClick={() => handleStartClick()}
+                />
+              </button>
+              <p css={reslutCircleText}>다시하기</p>
+            </div>
           </div>
         </div>
       )}
