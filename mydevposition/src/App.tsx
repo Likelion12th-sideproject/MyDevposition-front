@@ -12,8 +12,15 @@ const Wrapper = css`
   width: 100wh;
   height: 100vh;
   flex-direction: column;
+  font-family: "Poor Story", system-ui;
+  font-weight: 400;
+  font-style: normal;
 `;
-
+const outerDiv = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const mainDiv = css`
   display: flex;
   flex-direction: column;
@@ -24,7 +31,14 @@ const mainDiv = css`
   height: 95%;
   background-color: white;
   border-radius: 30px;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
+
+const subDiv = css`
+  margin-top: -30px;
+`;
+
 const container = css`
   display: flex;
   flex-direction: column;
@@ -32,23 +46,9 @@ const container = css`
   flex-direction: column;
   margin: auto;
 `;
-const innerDiv = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  width: 60%;
-  height: 85%;
-  background-color: white;
-`;
 
 const centeredText = css`
   text-align: center;
-`;
-
-const leftAlignedText = css`
-  margin-left: 0px;
 `;
 
 const logo = css`
@@ -56,11 +56,13 @@ const logo = css`
   height: 10rem;
   margin-top: 1rem;
 `;
+
 const timetable = css`
-  width: 15rem;
-  height: 15rem;
-  margin-bottom: 0.5rem;
+  width: 14rem;
+  height: 14rem;
+  margin-top: 0.5rem;
 `;
+
 const startButton = css`
   color: white;
   background-color: black;
@@ -71,63 +73,75 @@ const startButton = css`
   border: 0;
   border-radius: 10rem;
   font-size: 1.3rem;
-  font-weight: 600;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
 
 const backButton = css`
-  color: black;
-  background-color: white;
-  border: solid 1.5px;
-  border-radius: 5rem;
-  margin-top: 1.2rem;
-  width: 4.3rem;
-  height: 2.3rem;
-  text-align: center;
-  border-radius: 10rem;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-right: -13rem;
+  width: 1.2rem;
+  height: 1.8rem;
+  margin-right: 1.7rem;
+`;
+
+const nextButton = css`
+  width: 1.2rem;
+  height: 1.8rem;
+  margin-left: 1.7rem;
 `;
 
 const number = css`
   display: flex;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #f7941e;
   margin-top: 0.7rem;
 `;
 
-const question = css`
+const question1 = css`
   display: flex;
   font-size: 1.7rem;
   font-weight: bold;
-  margin-top: 0.7rem;
+  margin-top: 0.2rem;
 `;
-
-const questionText = css`
-  margin-bottom: 2rem;
+const question2 = css`
+  display: flex;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-top: 0.1rem;
 `;
 
 const answerBtn_Orange = css`
   text-align: center;
   background-color: #ffe4c3;
   border-style: solid;
+  border-width: 2px;
   border-radius: 5rem;
   border-color: #f7941e;
-  width: 18rem;
-  height: 3.5rem;
+  width: 16rem;
+  height: 3.4rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  &:focus {
+    background-color: #ffc885;
+    border-width: 4px;
+  }
 `;
 
 const answerBtn_Black = css`
   text-align: center;
   border-style: solid;
+  border-width: 2px;
   border-radius: 5rem;
   background-color: #f3f3f3;
   border-color: black;
-  width: 18rem;
-  height: 3.5rem;
+  width: 16rem;
+  height: 3.4rem;
+
+  &:focus {
+    background-color: #cfcfcf;
+    border-width: 4px;
+  }
 `;
 
 const answerWrapper = css`
@@ -136,34 +150,59 @@ const answerWrapper = css`
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin-top: 1rem;
+  margin-top: 0.2rem;
 `;
 
 const answerText = css`
   margin: auto;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
   font-size: 1.1rem;
   font-weight: bolder;
   padding: 0.2rem;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 550;
 `;
 
 const progressBar = css`
   width: 15rem;
   height: 18px;
-  background-color: #ffffff;
-  border-radius: 30px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #000000;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
 `;
 
-const progressFill = css`
-  height: 100%;
+const progressDot = css`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   background-color: black;
-  border-radius: 10px;
 `;
 
+const spinnerStyle = css`
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-top: 6px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-top: 2rem;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+const spinnerText = css`
+  font-size: 1.3rem;
+  font-weight: bolder;
+  padding: 0.2rem;
+  color: white;
+`;
 const resultDiv = css`
   display: flex;
   flex-direction: column;
@@ -273,6 +312,8 @@ function App() {
   const [back, setBack] = useState(0);
   const [plan, setPlan] = useState(0);
   const [design, setDesign] = useState(0);
+  const [showResultButton, setShowResultButton] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const questionList = [
     {
@@ -281,7 +322,7 @@ function App() {
         { text: "1학년", value: "" },
         { text: "2학년", value: "" },
         { text: "3학년", value: "" },
-        { text: "4학년", value: "" },
+        { text: "4학년 이상", value: "" },
       ],
     },
     {
@@ -338,32 +379,39 @@ function App() {
   ];
 
   const handleAnswer = (answer: { text?: string; value: any }, idx: number) => {
-    /* if (idx === 0) {
-      const data = {
-        answerText: answer.text,
+    if (idx === 0) {
+      const extractInteger = (text: string): string => {
+        const regex = /\d+/;
+        const match = text.match(regex);
+        return match ? match[0] : "";
       };
 
-      fetch("http://{{host}}/users/{{userId}}/grade", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+      const transformedText = extractInteger(answer.text || "");
+      const data = {
+        grade: transformedText,
+      };
+
+      fetch(
+        "https://838e598f-e98b-4557-8f47-05ab7487c670.mock.pstmn.io/grade",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
           console.log("Data saved:", data);
-          return response.json(); 
         })
-        .then((responseData) => {
-          console.log("Response data:", responseData);
-        })
+
         .catch((error) => {
           console.error("There was an error saving the data:", error);
         });
-    } */
+    }
 
     const value = answer.value;
 
@@ -392,11 +440,21 @@ function App() {
         setPlan((prevState) => prevState + 1);
         setDesign((prevState) => prevState + 1);
         break;
-      default:
-        break;
     }
-    setProgress(Math.round(((idx + 1) / questionList.length) * 100));
-    setPage((prevPage) => prevPage + 1);
+    if (idx === questionList.length - 1) {
+      setShowResultButton(true);
+    } else {
+      setProgress(Math.round(((idx + 1) / questionList.length) * 100));
+    }
+  };
+
+  const loadingClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setShowResultButton(true);
+      setPage(page + 1);
+    }, 3000);
   };
 
   const handleStartClick = () => {
@@ -406,6 +464,7 @@ function App() {
     setBack(0);
     setPlan(0);
     setDesign(0);
+    setShowResultButton(false);
   };
 
   const getResultPosition = () => {
@@ -447,9 +506,12 @@ function App() {
 
   return (
     <div css={Wrapper}>
-      {page === 0 ? (
-        /* //page 값이 0일때는 시작화면이 보이도록.
-        //시작 페이지 클릭 시 setPage가 1이 되면서 질문 페이지로 넘어감. */
+      {loading ? (
+        <>
+          <div css={spinnerText}>결과 불러오는 중</div>
+          <div css={spinnerStyle}></div>{" "}
+        </>
+      ) : page === 0 ? (
         <div css={[mainDiv, centeredText]} onClick={() => setPage(1)}>
           <h1>
             나에게 맞는
@@ -461,65 +523,94 @@ function App() {
           <button css={startButton}>시작하기</button>
         </div> //시작페이지
       ) : page < questionList.length + 1 ? (
-        <div css={[mainDiv]}>
-          <div>
-            <div css={container}>
-              <div css={progress}>
-                <div css={progressBar}>
-                  <div
-                    css={progressFill}
-                    style={{ width: `${(page / questionList.length) * 100}%` }}
-                  ></div>
+        <div css={mainDiv}>
+          <div css={outerDiv}>
+            <div>
+              {page >= 1 && (
+                <img
+                  css={backButton}
+                  src="Images/prebtn.png"
+                  onClick={() => setPage(page - 1)}
+                />
+              )}
+            </div>
+            <div css={[subDiv]}>
+              <div>
+                <div css={container}>
+                  <div css={progress}>
+                    <div css={progressBar}>
+                      {[...Array(questionList.length)].map((_, idx) => (
+                        <div
+                          key={idx}
+                          css={[
+                            progressDot,
+                            {
+                              backgroundColor: idx < page ? "black" : "#C9C9C9",
+                            },
+                          ]}
+                        ></div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+
+                {questionList.map((val, idx) => (
+                  <div
+                    style={{ display: page === idx + 1 ? `flex` : "none" }}
+                    key={idx}
+                  >
+                    <div css={container}>
+                      <div>
+                        <div css={number}>Q{idx + 1}</div>
+                        <div css={question1}>{val.q[0]}</div>
+                        <div css={question2}>{val.q[1]}</div>
+                      </div>
+                      <div css={answerWrapper}>
+                        {" "}
+                        {idx === questionList.length - 1 && (
+                          <img
+                            css={timetable}
+                            src="Images/시간표.png"
+                            alt="시간표"
+                          />
+                        )}
+                        {val.a.map((answer, aIdx) => (
+                          <button
+                            key={aIdx}
+                            css={
+                              aIdx % 2 === 0
+                                ? answerBtn_Orange
+                                : answerBtn_Black
+                            }
+                            onClick={() => handleAnswer(answer, idx)}
+                          >
+                            <span css={answerText}>{answer.text}</span>
+                          </button>
+                        ))}
+                      </div>{" "}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-
-            {questionList.map((val, idx) => (
-              <div
-                style={{ display: page === idx + 1 ? `flex` : "none" }}
-                key={idx}
-              >
-                <div css={container}>
-                  <div>
-                    <div css={number}>Q{idx + 1}</div>
-                    <div css={question}>{val.q[0]}</div>
-                    <div css={question}>{val.q[1]}</div>
-                  </div>
-
-                  <div css={answerWrapper}>
-                    {" "}
-                    {idx === questionList.length - 1 && (
-                      <img
-                        css={timetable}
-                        src="Images/시간표.png"
-                        alt="시간표"
-                      />
-                    )}
-                    {val.a.map((answer, aIdx) => (
-                      <button
-                        key={aIdx}
-                        css={
-                          aIdx % 2 === 0 ? answerBtn_Orange : answerBtn_Black
-                        }
-                        onClick={() => handleAnswer(answer, idx)}
-                      >
-                        <span css={answerText}>{answer.text}</span>
-                      </button>
-                    ))}
-                  </div>
-                  <div>
-                    {page > 1 && (
-                      <button
-                        css={backButton}
-                        onClick={() => setPage(page - 1)}
-                      >
-                        BACK
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div>
+              {page == questionList.length && (
+                <img
+                  css={nextButton}
+                  src="Images/nextbtn.png"
+                  onClick={() => loadingClick()}
+                />
+              )}
+            </div>
+            <div>
+              {page < questionList.length && (
+                <img
+                  css={nextButton}
+                  src="Images/nextbtn.png"
+                  onClick={() => setPage(page + 1)}
+                />
+              )}
+            </div>
           </div>
         </div>
       ) : (
