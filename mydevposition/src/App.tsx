@@ -458,7 +458,7 @@ function App() {
       setLoading(false);
       setShowResultButton(true);
       setPage(page + 1);
-    }, 10000);
+    }, 3000);
   };
 
   const handleStartClick = () => {
