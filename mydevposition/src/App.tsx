@@ -179,6 +179,30 @@ const progressDot = css`
   background-color: black;
 `;
 
+const spinnerStyle = css`
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-top: 6px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-top: 2rem;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+const spinnerText = css`
+  font-size: 1.3rem;
+  font-weight: bolder;
+  padding: 0.2rem;
+  color: white;
+`;
 const resultDiv = css`
   display: flex;
   flex-direction: column;
@@ -270,6 +294,7 @@ function App() {
   const [plan, setPlan] = useState(0);
   const [design, setDesign] = useState(0);
   const [showResultButton, setShowResultButton] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const questionList = [
     {
@@ -404,6 +429,15 @@ function App() {
     }
   };
 
+  const loadingClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setShowResultButton(true);
+      setPage(page + 1);
+    }, 3000);
+  };
+
   const handleStartClick = () => {
     setPage(0);
     setProgress(0);
@@ -416,9 +450,12 @@ function App() {
 
   return (
     <div css={Wrapper}>
-      {page === 0 ? (
-        /* //page 값이 0일때는 시작화면이 보이도록.
-        //시작 페이지 클릭 시 setPage가 1이 되면서 질문 페이지로 넘어감. */
+      {loading ? (
+        <>
+          <div css={spinnerText}>결과 불러오는 중</div>
+          <div css={spinnerStyle}></div>{" "}
+        </>
+      ) : page === 0 ? (
         <div css={[mainDiv, centeredText]} onClick={() => setPage(1)}>
           <h1>
             나에게 맞는
@@ -501,7 +538,16 @@ function App() {
               </div>
             </div>
             <div>
-              {page <= questionList.length && (
+              {page == questionList.length && (
+                <img
+                  css={nextButton}
+                  src="Images/nextbtn.png"
+                  onClick={() => loadingClick()}
+                />
+              )}
+            </div>
+            <div>
+              {page < questionList.length && (
                 <img
                   css={nextButton}
                   src="Images/nextbtn.png"
