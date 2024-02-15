@@ -121,7 +121,8 @@ const answerBtn_Orange = css`
   height: 2.6rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-
+  outline: none;
+  &:active,
   &:focus {
     background-color: #ffc885;
     border-width: 4px;
@@ -137,7 +138,8 @@ const answerBtn_Black = css`
   border-color: black;
   width: 13rem;
   height: 2.6rem;
-
+  outline: none;
+  &:active,
   &:focus {
     background-color: #cfcfcf;
     border-width: 4px;
