@@ -252,7 +252,6 @@ const resultQ = css`
 
 const resultTitle = css`
   font-size: 3rem;
-  font-weight: bolder;
   color: #f7941e;
   margin-top: 0px;
   margin-bottom: 6px;
