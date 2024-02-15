@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import { css } from "@emotion/react";
+import { keyframes, css } from "@emotion/react";
 
 const Wrapper = css`
   display: flex;
@@ -246,6 +246,8 @@ const resultDiv = css`
 const resultQ = css`
   margin-top: 30px;
   margin-bottom: 0px;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
 
 const resultTitle = css`
@@ -253,23 +255,30 @@ const resultTitle = css`
   font-weight: bolder;
   color: #f7941e;
   margin-top: 0px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 550;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const resultContent = css`
   display: float;
-  width: 85%;
+  width: 75%;
   height: auto;
   background-color: #ffe0bc;
   border-radius: 10px;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: bolder;
   justify-content: center;
   align-items: center;
   text-align: row;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
 const resultText = css`
   margin: 15px;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
 
 const resultContentDiv = css`
@@ -287,20 +296,29 @@ const resultContentDiv = css`
 const resultbtn = css`
   display: flex;
   width: 85%;
-  height: 30px;
+  height: 33px;
   background-color: #f7941e;
   border-radius: 10px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bolder;
   justify-content: center;
   align-items: center;
   text-align: row;
   align-items: center;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
-
+const blinkEffect = keyframes`
+  50% {
+    opacity: 0;
+  }
+`;
 const resultbtna = css`
   text-decoration: none;
   color: white;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
+  animation: ${blinkEffect} 1s step-end infinite;
 `;
 const reslutCircleDiv = css`
   display: flex;
@@ -318,8 +336,10 @@ const reslutCircleBtn = css`
   margin: 25px 25px 0px 25px;
 `;
 const reslutCircleText = css`
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: bolder;
+  font-family: "IBM Plex Sans KR";
+  font-weight: 500;
 `;
 
 interface Answer {
@@ -477,7 +497,7 @@ function App() {
       setLoading(false);
       setShowResultButton(true);
       setPage(page + 1);
-    }, 3000);
+    }, 4000);
   };
 
   const handleStartClick = () => {
@@ -656,7 +676,7 @@ function App() {
                 href="https://forms.gle/vruPB8KaZpMKgab56"
                 title="2024 아기사자 지원폼"
               >
-                Google 폼
+                아기사자 지원폼 CLICK! 🦁
               </a>
             </div>
           </div>
