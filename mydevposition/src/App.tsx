@@ -52,14 +52,14 @@ const centeredText = css`
 `;
 
 const logo = css`
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   margin-top: 1rem;
 `;
 
 const timetable = css`
-  width: 14rem;
-  height: 14rem;
+  width: 10rem;
+  height: 10rem;
   margin-top: 0.5rem;
 `;
 
@@ -67,45 +67,45 @@ const startButton = css`
   color: white;
   background-color: black;
   margin-top: 2rem;
-  width: 9rem;
-  height: 3rem;
+  width: 8rem;
+  height: 2.5rem;
   text-align: center;
   border: 0;
   border-radius: 10rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: "IBM Plex Sans KR";
   font-weight: 500;
 `;
 
 const backButton = css`
-  width: 1.2rem;
-  height: 1.8rem;
-  margin-right: 1.7rem;
+  width: 1rem;
+  height: 1.6rem;
+  margin-right: 0.7rem;
 `;
 
 const nextButton = css`
-  width: 1.2rem;
-  height: 1.8rem;
-  margin-left: 1.7rem;
+  width: 1rem;
+  height: 1.6rem;
+  margin-left: 0.7rem;
 `;
 
 const number = css`
   display: flex;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #f7941e;
-  margin-top: 0.7rem;
+  margin-top: 0.5rem;
 `;
 
 const question1 = css`
   display: flex;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-top: 0.2rem;
 `;
 const question2 = css`
   display: flex;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-top: 0.1rem;
 `;
@@ -117,8 +117,8 @@ const answerBtn_Orange = css`
   border-width: 2px;
   border-radius: 5rem;
   border-color: #f7941e;
-  width: 16rem;
-  height: 3.4rem;
+  width: 13rem;
+  height: 2.6rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 
@@ -135,8 +135,8 @@ const answerBtn_Black = css`
   border-radius: 5rem;
   background-color: #f3f3f3;
   border-color: black;
-  width: 16rem;
-  height: 3.4rem;
+  width: 13rem;
+  height: 2.6rem;
 
   &:focus {
     background-color: #cfcfcf;
@@ -156,25 +156,26 @@ const answerWrapper = css`
 const answerText = css`
   margin: auto;
   margin-bottom: 0.3rem;
-  font-size: 1.1rem;
+  font-size: 0.7rem;
   font-weight: bolder;
   padding: 0.2rem;
   font-family: "IBM Plex Sans KR";
-  font-weight: 550;
+  font-weight: 500;
 `;
 
 const progressBar = css`
-  width: 15rem;
-  height: 18px;
+  width: 10rem;
+  height: 15px;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding: 0 5px;
+  padding: 0 3px;
+  margin-bottom: 0.5rem;
 `;
 
 const progressDot = css`
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: black;
 `;
@@ -183,8 +184,8 @@ const spinnerStyle = css`
   border: 6px solid rgba(0, 0, 0, 0.1);
   border-top: 6px solid white;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   animation: spin 1s linear infinite;
   margin-top: 2rem;
 
@@ -198,35 +199,32 @@ const spinnerStyle = css`
   }
 `;
 const spinnerText = css`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bolder;
   padding: 0.2rem;
   color: white;
-  margin-top: 3rem;
+  margin-top: 2rem;
 `;
 
 const balloon1 = css`
-  width: 12rem;
+  width: 9rem;
   margin-left: -10rem;
-  margin-top: -2rem;
 `;
 
 const balloon2 = css`
-  width: 12rem;
+  width: 9rem;
   margin-right: -10rem;
-  margin-top: 1rem;
 `;
 
 const balloon3 = css`
-  width: 16rem;
+  width: 12rem;
   margin-left: -5rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 `;
 
 const balloon4 = css`
-  width: 7rem;
+  width: 3rem;
   margin-right: -15rem;
-  margin-top: 1rem;
 `;
 
 const resultDiv = css`
@@ -239,7 +237,7 @@ const resultDiv = css`
   height: 95%;
   background-color: white;
   border-radius: 30px;
-  font-size: 0.6rem;
+  font-size: 0.4rem;
   border: 1px;
 `;
 
@@ -251,7 +249,7 @@ const resultQ = css`
 `;
 
 const resultTitle = css`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bolder;
   color: #f7941e;
   margin-top: 0px;
@@ -267,7 +265,7 @@ const resultContent = css`
   height: auto;
   background-color: #ffe0bc;
   border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: bolder;
   justify-content: center;
   align-items: center;
@@ -289,17 +287,17 @@ const resultContentDiv = css`
   align-items: center;
   width: 80%;
   height: 20%;
-  font-size: 0.6rem;
+  font-size: 0.4rem;
   border: 1px;
 `;
 
 const resultbtn = css`
   display: flex;
   width: 85%;
-  height: 33px;
+  height: 30px;
   background-color: #f7941e;
   border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bolder;
   justify-content: center;
   align-items: center;
@@ -336,7 +334,7 @@ const reslutCircleBtn = css`
   margin: 25px 25px 0px 25px;
 `;
 const reslutCircleText = css`
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   font-weight: bolder;
   font-family: "IBM Plex Sans KR";
   font-weight: 500;
