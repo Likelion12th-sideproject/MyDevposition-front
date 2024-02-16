@@ -5,7 +5,7 @@
 #### 테스트 시작하기 https://likelion12th-mydevposition.web.app
 
 ### 사용 기술
-<img src="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square"/> <img src="https://shields.io/badge/react-FFFFFF?logo=react&style=flat-square"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white"/>
+<img src="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square"/> <img src="https://shields.io/badge/react-61DBFB?logo=react&style=flat-square&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white"/>
 
 ### 실행 화면
 시작 페이지에서 아무 곳이나 누르면 바로 테스트 페이지로 넘어가게 됩니다.
