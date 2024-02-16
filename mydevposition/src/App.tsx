@@ -128,6 +128,7 @@ const answerBtn_Orange = css`
   &:focus {
     background-color: #ffc885;
     border-width: 4px;
+    color: white;
   }
 `;
 
@@ -137,14 +138,16 @@ const answerBtn_Black = css`
   border-width: 2px;
   border-radius: 5rem;
   background-color: #f3f3f3;
-  border-color: black;
+  border-color: #000000;
   width: 13rem;
   height: 2.6rem;
   outline: none;
   color: black;
   &:active,
   &:focus {
-    background-color: #cfcfcf;
+    background-color: #7e7e7e;
+    color: white;
+    border-color: #d3d3d3;
     border-width: 4px;
   }
 `;
