@@ -348,6 +348,11 @@ const reslutCircleText = css`
   font-weight: 500;
 `;
 
+const nextDescription = css`
+  margin-top: 3rem;
+  font-size: 0.9rem;
+`
+
 interface Answer {
   text: string;
 }
@@ -665,7 +670,9 @@ function App() {
                 />
               )}
             </div>
+            
           </div>
+          <h3 css={nextDescription}>* 클릭 후 화살표를 눌러 다음으로 넘어가 주세요! *</h3>
         </div>
       ) : (
         <div css={[resultDiv]}>
