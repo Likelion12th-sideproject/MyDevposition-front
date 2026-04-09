@@ -17,7 +17,7 @@
 
 ---
 ### 제작자
-<a href="https://github.com/yourseong"><img src="https://img.shields.io/badge/채유성?style=social-square&logo=github&logoColor=white"/></a>
+<a href="https://github.com/yourseong"><img src="https://img.shields.io/badge/채유성-black?style=social-square&logo=github&logoColor=white"/></a>
 <a href="https://github.com/naye0n0"><img src="https://img.shields.io/badge/김나연-black?style=social-square&logo=github&logoColor=white"/></a>
 <a href="https://github.com/daeunleeeee"><img src="https://img.shields.io/badge/이다은-black?style=social-square&logo=github&logoColor=white"/></a>
 <a href="https://github.com/orgs/yerimi00"><img src="https://img.shields.io/badge/이예림-black?style=social-square&logo=github&logoColor=white"/></a>
